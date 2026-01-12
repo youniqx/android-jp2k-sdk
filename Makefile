@@ -14,18 +14,18 @@ build:
 prepare:
 	./scripts/build.sh --prepare
 
-.PHONY: publish
-publish:
-	./scripts/build.sh --publish
-
-.PHONY: publish-local
-publish-local:
-	./scripts/build.sh --publishLocal
-
-.PHONY: docs
-docs:
-	./scripts/build.sh --docs
-
+#.PHONY: publish
+#publish:
+#	./scripts/build.sh --publish
+#
+#.PHONY: publish-local
+#publish-local:
+#	./scripts/build.sh --publishLocal
+#
+#.PHONY: docs
+#docs:
+#	./scripts/build.sh --docs
+#
 #.PHONY: detekt-and-lint
 #detekt-and-lint:
 #	./gradlew lintBuildscripts lintKotlin detektDebugAll; \

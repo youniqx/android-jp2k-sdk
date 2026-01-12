@@ -2,14 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 35
+    namespace "com.youniqx.jp2.test"
 
     defaultConfig {
-        applicationId "com.gemalto.openjpeg.test"
-        namespace "com.gemalto.jp2.test"
+        applicationId "com.youniqx.openjpeg.test"
         minSdkVersion 21
-        targetSdkVersion 35
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
     }
 
     buildTypes {

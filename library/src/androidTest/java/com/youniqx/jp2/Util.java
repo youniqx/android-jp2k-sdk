@@ -1,4 +1,4 @@
-package com.gemalto.jp2;
+package com.youniqx.jp2;
 
 import android.content.Context;
 import android.graphics.Bitmap;

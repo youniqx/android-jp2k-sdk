@@ -41,9 +41,9 @@ done
 
 runAction() {
   if [ $build = true ]; then
-    if [ "$CI" = "true" ]; then
-	    ./gradlew lintBuildscripts lintKotlin detektDebugAll
-    fi
+#    if [ "$CI" = "true" ]; then
+#	    ./gradlew lintBuildscripts lintKotlin detektDebugAll
+#    fi
     ./gradlew assemble test
   fi
   if [ $publish = true ]; then

@@ -1,4 +1,4 @@
-package com.gemalto.jp2;
+package com.youniqx.jp2;
 
 import android.graphics.Bitmap;
 import android.util.Log;

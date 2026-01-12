@@ -11,5 +11,6 @@
   "files_to_copy": [
   ],
   "files_to_cleanup": [
+    "${CURRENT_WORK_DIR}/library/src/main/cpp/openjpeg"
   ]
 }

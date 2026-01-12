@@ -1,4 +1,4 @@
-package com.gemalto.jp2.test;
+package com.youniqx.jp2.test;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -9,7 +9,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gemalto.jp2.JP2Decoder;
+import com.youniqx.jp2.test.R;
+import com.youniqx.jp2.JP2Decoder;
 
 import java.io.Closeable;
 import java.io.IOException;

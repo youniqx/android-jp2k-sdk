@@ -2,12 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 35
+    namespace "com.youniqx.jp2"
+
     defaultConfig {
-        namespace "com.gemalto.jp2"
         minSdkVersion 21
-        targetSdkVersion 35
-        versionName "1.0.5"
-        versionCode 5
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -18,6 +16,10 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
         }
     }
     externalNativeBuild {
