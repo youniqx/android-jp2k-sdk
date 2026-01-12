@@ -1,18 +1,24 @@
-.hg/
-.hgignore
-.hgtags
-
-.gradle
-local.properties
-build
-captures
-.externalNativeBuild
-.idea
-library/.cxx
-library/build
-library/.externalNativeBuild
-library/makecmakelist.bat
-testapp/build
-testapp/.externalNativeBuild
 *.iml
+.gradle
+.gradle_user_home
+.kotlin
+.idea
+/public
+## OSX Specific
+.DS_Store
+## Build folders
+**/build
+**/out
+/captures
+.externalNativeBuild
+.cxx
+## Local settings
+local.properties
 
+## files pulled in from external sources
+/config
+.editorconfig
+keystores/
+buildScripts
+library/makecmakelist.bat
+library/src/main/cpp/openjpeg
