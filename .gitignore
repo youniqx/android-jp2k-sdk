@@ -16,6 +16,7 @@
 local.properties
 
 ## files pulled in from external sources
+fastlane
 /config
 .editorconfig
 keystores/
