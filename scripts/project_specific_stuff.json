@@ -1,0 +1,15 @@
+{
+  "needed_folders": [
+  ],
+  "needed_files": [
+  ],
+  "before_commands": [
+    ". ./scripts/fetchOpenJpeg.sh"
+  ],
+  "after_commands": [
+  ],
+  "files_to_copy": [
+  ],
+  "files_to_cleanup": [
+  ]
+}
