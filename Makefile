@@ -18,10 +18,10 @@ prepare:
 #publish:
 #	./scripts/build.sh --publish
 #
-#.PHONY: publish-local
-#publish-local:
-#	./scripts/build.sh --publishLocal
-#
+.PHONY: publish-local
+publish-local:
+	./scripts/build.sh --publishLocal
+
 #.PHONY: docs
 #docs:
 #	./scripts/build.sh --docs
