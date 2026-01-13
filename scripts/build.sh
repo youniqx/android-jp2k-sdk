@@ -7,7 +7,6 @@ CURRENT_WORK_DIR="${PWD}"
 build=false
 publish=false
 publishLocal=false
-docs=false
 cleanUp=false
 prepare=false
 
@@ -24,9 +23,6 @@ while true; do
     shift
   elif [ "${1}" = "--publishLocal" ]; then
     publishLocal=true
-    shift
-  elif [ "${1}" = "--docs" ]; then
-    docs=true
     shift
   elif [ "${1}" = "--cleanup" ]; then
     cleanUp=true
@@ -59,10 +55,6 @@ runAction() {
   if [ $publishLocal = true ]; then
     export LIB_VERSION="local"
     ./gradlew publishToMavenLocal
-  fi
-  if [ $docs = true ]; then
-    ./gradlew dokkaGenerate || exit 1
-    mkdir -p public && cp -r wallet-sdk/build/dokka/html/* public
   fi
 }
 

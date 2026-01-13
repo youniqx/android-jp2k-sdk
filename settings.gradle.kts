@@ -1,5 +1,5 @@
-
-pluginManagement {
+pluginManagement{
+    includeBuild("gradle")
     repositories {
         google()
         gradlePluginPortal()
