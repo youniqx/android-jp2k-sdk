@@ -14,9 +14,9 @@ build:
 prepare:
 	./scripts/build.sh --prepare
 
-#.PHONY: publish
-#publish:
-#	./scripts/build.sh --publish
+.PHONY: publish
+publish:
+	./scripts/build.sh --publish
 
 .PHONY: publish-local
 publish-local:
