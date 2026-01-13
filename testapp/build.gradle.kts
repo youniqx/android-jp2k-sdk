@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdk = 36
-    namespace = "com.youniqx.jp2.test"
+    namespace = "com.youniqx.jp2k.test"
 
     defaultConfig {
         applicationId = "com.youniqx.openjpeg.test"

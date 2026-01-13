@@ -8,7 +8,7 @@ An open-source JPEG-2000 image encoder/decoder for Android based on
 Add dependency to your `build.gradle.kts`:
 
 ```kotlin
-implementation("com.youniqx.jp2:jp2-android:<version>")
+implementation("com.youniqx:jp2k-sdk:<version>")
 ```
 
 ## Basic Usage

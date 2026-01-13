@@ -1,9 +1,11 @@
-package com.youniqx.jp2;
+package com.youniqx.jp2k;
 
 import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.IntDef;
+
+import com.youniqx.jp2k.BuildConfig;
 
 import java.io.IOException;
 import java.io.OutputStream;

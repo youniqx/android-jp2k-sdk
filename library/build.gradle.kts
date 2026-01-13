@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdk = 36
-    namespace = "com.youniqx.jp2"
+    namespace = "com.youniqx.jp2k"
 
     defaultConfig {
         minSdk = 26

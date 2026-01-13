@@ -1,4 +1,4 @@
-package com.youniqx.jp2;
+package com.youniqx.jp2k;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
