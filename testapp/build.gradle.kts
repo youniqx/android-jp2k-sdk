@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     namespace = "com.youniqx.jp2.test"
 
     defaultConfig {
         applicationId = "com.youniqx.openjpeg.test"
-        targetSdk = 35
-        minSdk = 21
+        targetSdk = 36
+        minSdk = 26
         versionCode = 1
         versionName = "0.0.1"
     }

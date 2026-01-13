@@ -1,15 +1,14 @@
-
 plugins {
     alias(libs.plugins.android.library)
     id("maven-publish")
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     namespace = "com.youniqx.jp2"
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
