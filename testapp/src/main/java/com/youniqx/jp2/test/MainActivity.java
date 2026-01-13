@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.youniqx.jp2.test.R;
 import com.youniqx.jp2.JP2Decoder;
 
 import java.io.Closeable;
