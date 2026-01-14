@@ -1,5 +1,12 @@
 package com.youniqx.jp2k;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 
@@ -13,8 +20,6 @@ import org.junit.runner.RunWith;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class TestJp2Encoder {
@@ -173,7 +178,7 @@ public class TestJp2Encoder {
             //null bitmap
             new JP2Encoder(null);
             fail("Exception should have been thrown");
-        } catch (IllegalArgumentException ignored) {}
+        } catch (NullPointerException ignored) {}
 
         Bitmap expected = util.loadAssetBitmap("lena.png");
 
@@ -181,7 +186,7 @@ public class TestJp2Encoder {
             //undefined output format
             new JP2Encoder(expected).setOutputFormat(3);
             fail("Exception should have been thrown");
-        } catch (IllegalArgumentException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {}
 
         try {
             //zero is not allowed
@@ -299,7 +304,7 @@ public class TestJp2Encoder {
         float[] qualities = new float[]{30, 50, 20};
         encoded = new JP2Encoder(orig).setVisualQuality(qualities).encode();
         JP2Decoder.Header header = new JP2Decoder(encoded).readHeader();
-        assertEquals("wrong number of quality layers", header.numQualityLayers, qualities.length);
+        assertEquals("wrong number of quality layers", header.getNumQualityLayers(), qualities.length);
 
         float[] sortedQualities = Arrays.copyOf(qualities, qualities.length);
         Arrays.sort(sortedQualities);

@@ -1,5 +1,8 @@
+import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
+
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     id("maven-publish")
 }
 
@@ -40,6 +43,11 @@ android {
         buildConfig = true
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
     publishing {
         singleVariant("release") {}
         multipleVariants("all") {
@@ -51,8 +59,10 @@ android {
 
 dependencies {
     implementation(libs.android.annotation)
+    implementation(libs.core.ktx)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.kotlin.test)
 }
 
 publishing {

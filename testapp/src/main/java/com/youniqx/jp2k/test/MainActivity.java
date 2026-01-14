@@ -80,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 JP2Decoder.Header header = decoder.readHeader();
 
                 //get the size of the image
-                int imgWidth = header.width;
-                int imgHeight = header.height;
+                int imgWidth = header.getWidth();
+                int imgHeight = header.getHeight();
                 Log.d(TAG, String.format("JP2 resolution: %d x %d", imgWidth, imgHeight));
 
                 //we halve the resolution until we go under the ImageView size or until we run out of the available JP2 image resolutions
                 int skipResolutions = 1;
-                while (skipResolutions < header.numResolutions) {
+                while (skipResolutions < header.getNumResolutions()) {
                     imgWidth >>= 1;
                     imgHeight >>= 1;
                     if (imgWidth < width && imgHeight < height) break;

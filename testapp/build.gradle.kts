@@ -1,6 +1,6 @@
 
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
 }
 
 android {
@@ -8,11 +8,12 @@ android {
     namespace = "com.youniqx.jp2k.test"
 
     defaultConfig {
-        applicationId = "com.youniqx.openjpeg.test"
-        targetSdk = 36
         minSdk = 26
-        versionCode = 1
-        versionName = "0.0.1"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     buildTypes {

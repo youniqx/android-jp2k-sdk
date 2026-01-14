@@ -1,5 +1,12 @@
 package com.youniqx.jp2k;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 
@@ -15,8 +22,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -163,11 +168,11 @@ public class TestJp2Decoder {
             JP2Decoder dec = new JP2Decoder(data);
             JP2Decoder.Header header = dec.readHeader();
             assertNotNull(expected.file + " header is null", header);
-            assertEquals(expected.file + " header, Wrong width", expected.width, header.width);
-            assertEquals(expected.file + " header, Wrong height", expected.height, header.height);
-            assertEquals(expected.file + " header, Wrong alpha", expected.hasAlpha, header.hasAlpha);
-            assertEquals(expected.file + " header, Wrong number of resolutions", expected.numResolutions, header.numResolutions);
-            assertEquals(expected.file + " header, Wrong number of quality layers", expected.numQualityLayers, header.numQualityLayers);
+            assertEquals(expected.file + " header, Wrong width", expected.getWidth(), header.getWidth());
+            assertEquals(expected.file + " header, Wrong height", expected.getHeight(), header.getHeight());
+            assertEquals(expected.file + " header, Wrong alpha", expected.getHasAlpha(), header.getHasAlpha());
+            assertEquals(expected.file + " header, Wrong number of resolutions", expected.getNumResolutions(), header.getNumResolutions());
+            assertEquals(expected.file + " header, Wrong number of quality layers", expected.getNumQualityLayers(), header.getNumQualityLayers());
 
             Bitmap jp2Bitmap = dec.decode();
             Bitmap pngBitmap = util.loadAssetBitmap(expected.file.replace(".jp2", ".png"));
@@ -208,11 +213,11 @@ public class TestJp2Decoder {
                 }
 
                 assertNotNull(expected.file + ", Header is null", header);
-                assertEquals(expected.file + ", Wrong width", expected.width, header.width);
-                assertEquals(expected.file + ", Wrong height", expected.height, header.height);
-                assertEquals(expected.file + ", Wrong alpha", expected.hasAlpha, header.hasAlpha);
-                assertEquals(expected.file + ", Wrong number of resolutions", expected.numResolutions, header.numResolutions);
-                assertEquals(expected.file + ", Wrong number of quality layers", expected.numQualityLayers, header.numQualityLayers);
+                assertEquals(expected.file + ", Wrong width", expected.getWidth(), header.getWidth());
+                assertEquals(expected.file + ", Wrong height", expected.getHeight(), header.getHeight());
+                assertEquals(expected.file + ", Wrong alpha", expected.getHasAlpha(), header.getHasAlpha());
+                assertEquals(expected.file + ", Wrong number of resolutions", expected.getNumResolutions(), header.getNumResolutions());
+                assertEquals(expected.file + ", Wrong number of quality layers", expected.getNumQualityLayers(), header.getNumQualityLayers());
             }
         }
 
@@ -436,14 +441,19 @@ public class TestJp2Decoder {
     private static class ExpectedHeader extends JP2Decoder.Header {
         public String file;
 
-        public ExpectedHeader(final String file, final int width, final int height, final boolean hasAlpha, final int numResolutions,
+        public ExpectedHeader(final String file,
+                              final int width,
+                              final int height,
+                              final boolean hasAlpha,
+                              final int numResolutions,
                               final int numQualityLayers) {
             this.file = file;
-            this.width = width;
-            this.height = height;
-            this.hasAlpha = hasAlpha;
-            this.numResolutions = numResolutions;
-            this.numQualityLayers = numQualityLayers;
+            this.setWidth(width);
+            this.setWidth(width);
+            this.setHeight(height);
+            this.setHasAlpha(hasAlpha);
+            this.setNumResolutions(numResolutions);
+            this.setNumQualityLayers(numQualityLayers);
         }
     }
 }

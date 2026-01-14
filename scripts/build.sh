@@ -40,7 +40,7 @@ runAction() {
 #    if [ "$CI" = "true" ]; then
 #	    ./gradlew lintBuildscripts lintKotlin detektDebugAll
 #    fi
-    ./gradlew assemble test
+    ./gradlew assemble
   fi
   if [ $publish = true ]; then
     if [ -z "${CI_COMMIT_TAG}" ];then

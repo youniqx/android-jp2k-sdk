@@ -21,7 +21,7 @@ implementation("com.youniqx:jp2k-sdk:<version>")
 Decoding an image:
 
 ```kotlin
-val bmp: Bitmap = new JP2Decoder(jp2data).decode()
+val bmp: Bitmap = JP2Decoder(jp2data).decode()
 imageView.setImageBitmap(bmp)
 ```
 
