@@ -9,7 +9,7 @@ import kotlin.math.sign
 
 /**
  * JPEG-2000 bitmap encoder. Output properties:
- * <ul]
+ * <ul>
  *     <li>file format: JP2 (standard JPEG-2000 file format) or J2K (JPEG-2000 codestream)</li>
  *     <li>colorspace: RGB or RGBA (depending on the
  *          {@link Bitmap#hasAlpha() hasAlpha()} value of the input bitmap)</li>

@@ -449,7 +449,6 @@ public class TestJp2Decoder {
                               final int numQualityLayers) {
             this.file = file;
             this.setWidth(width);
-            this.setWidth(width);
             this.setHeight(height);
             this.setHasAlpha(hasAlpha);
             this.setNumResolutions(numResolutions);
