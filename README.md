@@ -2,6 +2,10 @@
 
 An open-source JPEG-2000 image encoder/decoder, forked from
 [this Gemalto/Thales Repo](https://github.com/ThalesGroup/JP2ForAndroid),
+which was forked and update once
+[in this Repo](https://github.com/Tgo1014/JP2ForAndroid),
+and updated to fit current play store rules in
+[this Repo](https://github.com/prefectAtEarth/JP2ForAndroid),
 for Android, based on [OpenJPEG](http://www.openjpeg.org/) v2.4.0.
 
 ## Set up
