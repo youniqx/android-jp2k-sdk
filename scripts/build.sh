@@ -10,9 +10,6 @@ publishLocal=false
 cleanUp=false
 prepare=false
 
-# shellcheck source=/dev/null
-. "${CURRENT_WORK_DIR}"/scripts/fetchPrepareBuildEnvironment.sh
-
 ## get arguments from script call
 while true; do
   if [ "${1}" = "--build" ]; then
@@ -50,7 +47,7 @@ runAction() {
       echo "Publish version ${CI_COMMIT_TAG#v}"
       export LIB_VERSION="${CI_COMMIT_TAG#v}"
     fi
-    ./gradlew publish -Dorg.gradle.s3.endpoint=https://s3.gra.io.cloud.ovh.net
+    ./gradlew publish "${ADDITIONAL_GRADLE_OPTION}"
   fi
   if [ $publishLocal = true ]; then
     export LIB_VERSION="local"
@@ -58,22 +55,44 @@ runAction() {
   fi
 }
 
-main() {
-  ## get build tools
-  fetchPrepareBuildEnvironment
-  ## prepare build environment
-  prepareBuildEnvironment
+# Cloning openjpeg C library from [openjpeg](https://github.com/uclouvain/openjpeg)
+cloneFromOpenJpeg() {
+  echo "--------- CLONE OPEN JPEG ${OPEN_JPEG_VERSION} ---------"
+  OPEN_JPEG_DIR="${CURRENT_WORK_DIR}/library/src/main/cpp/openjpeg"
+  if [ -d "${OPEN_JPEG_DIR}" ];then
+    cd "${OPEN_JPEG_DIR}" || exit 1
+    git checkout v"${OPEN_JPEG_VERSION}"
+    git pull
+  else
+    git clone --branch v"${OPEN_JPEG_VERSION}" --depth=1 "https://github.com/uclouvain/openjpeg.git" "${OPEN_JPEG_DIR}"
+  fi
+  cd "${CURRENT_WORK_DIR}" || exit 1
+  echo "--------- DONE CLONE OPEN JPEG ---------"
+}
 
+cleanupProject() {
+  echo "--------- CLEANUP PROJECT ---------"
+  ./gradlew clean
+   rm -rf "${CURRENT_WORK_DIR}/library/src/main/cpp/openjpeg"
+  echo "--------- CLEANUP DONE ---------"
+}
+
+main() {
   ## cleanup and exit
   if [ "$cleanUp" = true ];then
     cleanupProject
     exit 0;
   fi
-  ## and some project specific files
-  prepareProjectSpecificStuff
+
+  ## get external resources
+  cloneFromOpenJpeg
+
+  ## no need to build if prepare action
   if [ $prepare = true ];then
     exit 0;
   fi
+
+  ## build, publish,…
   runAction
 }
 

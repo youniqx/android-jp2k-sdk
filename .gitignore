@@ -1,6 +1,5 @@
 *.iml
 .gradle
-.gradle_user_home
 .kotlin
 .idea
 /public
@@ -16,10 +15,4 @@
 local.properties
 
 ## files pulled in from external sources
-fastlane
-/config
-.editorconfig
-keystores/
-buildScripts
-library/makecmakelist.bat
 library/src/main/cpp/openjpeg
