@@ -12,3 +12,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 -renamesourcefileattribute SourceFile
+
+-keep class com.youniqx.jp2k.JP2Encoder { *; }
+-keep class com.youniqx.jp2k.JP2Decoder { *; }
