@@ -1,6 +1,3 @@
-export PROJECT_NAME = jp2k-lib
-export GROUP_NAME = check-at
-export ANDROID_TOOLS_SOURCE = ${HOME}/Projects/youniqx/mia/android-tools
 export GITLAB_PKG_REGISTRY = https://gitlab.ci.youniqx.com/api/v4/projects/${CI_PROJECT_ID}/packages/maven
 export OPEN_JPEG_VERSION=2.4.0
 
