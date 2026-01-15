@@ -149,25 +149,25 @@ class JP2Decoder private constructor() {
         return nativeToHeader(res)
     }
 
-    private fun readInputStream(`in`: InputStream?): ByteArray? {
+    private fun readInputStream(inputStream: InputStream?): ByteArray? {
         // sanity check
-        if (`in` == null) {
+        if (inputStream == null) {
             Log.e(TAG, "input stream is null!")
             return null
         }
 
         var out: ByteArrayOutputStream? = null
         try {
-            out = ByteArrayOutputStream(`in`.available())
-            val buffer = ByteArray(16 * 1024)
-            var bytesRead = `in`.read(buffer)
+            out = ByteArrayOutputStream(inputStream.available())
+            val buffer = ByteArray(size = 16 * 1024)
+            var bytesRead = inputStream.read(buffer)
             while (bytesRead >= 0) {
                 out.write(buffer, 0, bytesRead)
-                bytesRead = `in`.read(buffer)
+                bytesRead = inputStream.read(buffer)
             }
             return out.toByteArray()
         } catch (e: IOException) {
-            e.printStackTrace()
+            Log.e(TAG, "$e")
             return null
         }
     }
@@ -175,6 +175,7 @@ class JP2Decoder private constructor() {
     /*
         Get the decoded data from the native code and create a Bitmap object.
      */
+    @Suppress("MagicNumber")
     private fun nativeToBitmap(data: IntArray?): Bitmap? {
         if (data == null || data.size < 3) return null
         val width = data[0]
@@ -194,6 +195,7 @@ class JP2Decoder private constructor() {
     /*
         Get the header data from the native code
      */
+    @Suppress("MagicNumber")
     private fun nativeToHeader(data: IntArray?): Header? {
         if (data == null || data.size < 5) return null
         val ret = Header()
@@ -204,7 +206,6 @@ class JP2Decoder private constructor() {
         ret.numQualityLayers = data[4]
         return ret
     }
-
 
     private external fun decodeJP2File(
         filename: String?,

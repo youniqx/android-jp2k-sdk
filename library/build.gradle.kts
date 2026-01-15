@@ -1,9 +1,21 @@
-import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
+import io.gitlab.arturbosch.detekt.Detekt
+import org.gradle.kotlin.dsl.withType
 
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.detekt)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlinter)
     id("maven-publish")
+}
+
+tasks.withType<Detekt>().configureEach {
+    exclude { it.file.path.contains("build") }
+    exclude { it.file.path.contains("cpp") }
+}
+
+tasks.register("detektDebugAll") {
+    dependsOn("detektDebug", "detektDebugUnitTest", "detektDebugAndroidTest")
 }
 
 android {

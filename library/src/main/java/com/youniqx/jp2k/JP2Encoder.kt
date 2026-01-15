@@ -39,7 +39,7 @@ class JP2Encoder(
 
     var numResolution = DEFAULT_NUM_RESOLUTIONS
         set(value) {
-            require(value in MIN_RESOLUTIONS .. maxResolutions) {
+            require(value in MIN_RESOLUTIONS..maxResolutions) {
                 "Maximum number of resolutions for this image is between $MIN_RESOLUTIONS and $maxResolutions: $value"
             }
             field = value
@@ -78,7 +78,7 @@ class JP2Encoder(
             field = sort(value, true, 0f)
         }
 
-    /**
+    /*
      * Creates a new instance of the JPEG-2000 encoder.
      * loads "openjpeg" C library
      * @param bmp the bitmap to encode
@@ -295,16 +295,14 @@ class JP2Encoder(
     ): ByteArray
 
     companion object {
-        // TODO in case of update to a newer version of OpenJPEG, check if it still
+        // in case of update to a newer version of OpenJPEG, check if it still
         // throws error in case of too high resolution number
         // minimum resolutions supported by OpenJPEG 2.3.0
         private const val MIN_RESOLUTIONS = 1
+
         // maximum resolutions supported by OpenJPEG 2.3.0
         private const val MAX_RESOLUTIONS_GLOBAL = 32
-
         private const val EXIT_SUCCESS = 0
-        private const val EXIT_FAILURE = 1
-
         private const val DEFAULT_NUM_RESOLUTIONS = 6
 
         @Deprecated("Use OutputFormat Enum values instead")

@@ -22,12 +22,12 @@ publish:
 publish-local:
 	./scripts/build.sh --publishLocal
 
-#.PHONY: detekt-and-lint
-#detekt-and-lint:
-#	./gradlew lintBuildscripts lintKotlin detektDebugAll; \
-#	if [ $$? != 0 ]; then \
-#		./gradlew formatBuildscripts formatKotlin; \
-#    fi
+.PHONY: detekt-and-lint
+detekt-and-lint:
+	./gradlew lintKotlin detektDebugAll; \
+	if [ $$? != 0 ]; then \
+		./gradlew formatKotlin; \
+    fi
 
 .PHONY: clean
 clean:
