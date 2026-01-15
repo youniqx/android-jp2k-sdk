@@ -38,6 +38,11 @@ runAction() {
 	    ./gradlew lintKotlin detektDebugAll
     fi
     ./gradlew assemble
+    mkdir -p "${CURRENT_WORK_DIR}/tmp"
+    ./gradlew assembleDebugAndroidTest
+    cp "${CURRENT_WORK_DIR}/library/build/outputs/apk/androidTest/debug/library-debug-androidTest.apk" "${CURRENT_WORK_DIR}/tmp/test.apk"
+    ./gradlew assembleDebugAndroidTest -DtestApplicationId="com.youniqx.test.app"
+    cp "${CURRENT_WORK_DIR}/library/build/outputs/apk/androidTest/debug/library-debug-androidTest.apk" "${CURRENT_WORK_DIR}/tmp/app.apk"
   fi
   if [ $publish = true ]; then
     if [ -z "${CI_COMMIT_TAG}" ];then
@@ -74,6 +79,7 @@ cleanupProject() {
   echo "--------- CLEANUP PROJECT ---------"
   ./gradlew clean
    rm -rf "${CURRENT_WORK_DIR}/library/src/main/cpp/openjpeg"
+   rm -rf "${CURRENT_WORK_DIR}/tmp"
   echo "--------- CLEANUP DONE ---------"
 }
 

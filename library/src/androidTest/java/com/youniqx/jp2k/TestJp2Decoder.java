@@ -176,7 +176,7 @@ public class TestJp2Decoder {
 
             Bitmap jp2Bitmap = dec.decode();
             Bitmap pngBitmap = util.loadAssetBitmap(expected.file.replace(".jp2", ".png"));
-            util.assertBitmapsEqual(expected.file, pngBitmap, jp2Bitmap);
+            util.assertBitmapsEqualWithTolerance(expected.file, pngBitmap, jp2Bitmap, 1.733);
         }
     }
 

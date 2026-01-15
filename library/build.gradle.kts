@@ -24,6 +24,7 @@ android {
     defaultConfig {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testApplicationId = System.getProperty("testApplicationId", "com.youniqx.jp2k.test")
     }
 
     buildTypes {
