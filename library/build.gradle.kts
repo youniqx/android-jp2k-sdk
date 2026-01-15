@@ -1,5 +1,4 @@
 import io.gitlab.arturbosch.detekt.Detekt
-import org.gradle.kotlin.dsl.withType
 
 plugins {
     alias(libs.plugins.android.library)
@@ -56,7 +55,6 @@ android {
     }
 
     publishing {
-        singleVariant("release") {}
         multipleVariants("all") {
             allVariants()
             withSourcesJar()
@@ -78,13 +76,8 @@ publishing {
             groupId = "com.youniqx"
             artifactId = "jp2k-sdk"
             version = System.getenv("LIB_VERSION") ?: "local"
-            // only publish JARs when pushing for internal use or local builds
             afterEvaluate {
-                if (System.getenv("PUBLIC_ARTIFACTS_URL").isNullOrEmpty()) {
-                    from(components["all"])
-                } else {
-                    from(components["release"])
-                }
+                from(components["all"])
             }
         }
     }
