@@ -11,6 +11,20 @@ build:
 prepare:
 	./scripts/build.sh --prepare
 
+.PHONY: uitest
+uitest:
+	mkdir "${RESULT_DIR}" \
+ 	&& uitest --key-file-env "UI_TEST_SERVICE_ACCOUNT" \
+     --app-apk "${APP_APK}" \
+     --test-apk "${TEST_APK}" \
+     --type "${TEST_TYPE}" \
+     --timeout "${TEST_TIMEOUT}" \
+     --use-orchestrator \
+     --environment-variables "clearPackageData=true" \
+     --output-dir "${RESULT_DIR}" \
+     --project "${FIREBASE_PROJECT}" \
+     --device locale=de,orientation=portrait
+
 .PHONY: publish
 publish:
 	./scripts/build.sh --publish

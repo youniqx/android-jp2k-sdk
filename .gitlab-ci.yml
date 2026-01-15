@@ -29,7 +29,41 @@ Build library:
   artifacts:
     paths:
       - sdk/build
+      - tmp
     expire_in: 1 day
+
+UI Tests:
+  extends:
+    - .vault
+    - .small
+  tags: [linux-unprivileged]
+  stage: test
+  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/mia_gcloud_tools:1.3.73
+  needs:
+    - job: "Build library"
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ $RENOVATE_BRANCH
+      when: manual
+      allow_failure: true
+    - if: $CI_COMMIT_REF_NAME !~ $RENOVATE_BRANCH
+  secrets:
+    UI_TEST_SERVICE_ACCOUNT:
+      vault: check-at/libs/android-jp2k-sdk/unprotected/service_accounts/firebase_ui_test_account@youniqx
+      file: false
+  variables:
+    FIREBASE_PROJECT: "idcheck-6e640"
+    RESULT_DIR: "results"
+    TEST_TIMEOUT: "15m"
+    TEST_TYPE: "instrumentation"
+    APP_APK: "tmp/app.apk"
+    TEST_APK: "tmp/test.apk"
+  script:
+    - make uitest
+  artifacts:
+    paths:
+      - $RESULT_DIR
+    expire_in: 24 hours
 
 release-test:
   extends: .release_test
@@ -51,6 +85,7 @@ Publish to Gitlab:
   needs:
     - job: "Build library"
       artifacts: true
+    - job: "UI Tests"
   rules:
     - if: $CI_COMMIT_TAG
     - if: !$CI_COMMIT_TAG
