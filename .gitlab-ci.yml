@@ -23,7 +23,7 @@ Build library:
     - .large
   tags: [linux-unprivileged]
   stage: build
-  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/android-build:1.14.0
+  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/android-build:1.14.1
   script:
     - make build
   artifacts:
@@ -47,7 +47,7 @@ Publish to Gitlab:
     - .medium
   tags: [linux-unprivileged]
   stage: release
-  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/android-build:1.14.0
+  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/android-build:1.14.1
   needs:
     - job: "Build library"
       artifacts: true
@@ -65,7 +65,7 @@ Publish to Gitlab:
 #   extends:
 #     - .medium
 #   tags: [linux-unprivileged]
-#   image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/android-build:1.14.0
+#   image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/android-build:1.14.1
 #   script:
 #     - make docs
 #   rules:
