@@ -3,6 +3,7 @@ package com.youniqx.jp2k
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
@@ -58,26 +59,24 @@ class Util(
         actual: Bitmap,
         toleranceThreshold: Double,
     ) {
-        Assert.assertEquals(message, expected.getWidth().toLong(), actual.getWidth().toLong())
-        Assert.assertEquals(message, expected.getHeight().toLong(), actual.getHeight().toLong())
-        val pixels1 = IntArray(expected.getWidth() * expected.getHeight())
-        val pixels2 = IntArray(actual.getWidth() * actual.getHeight())
-        expected.getPixels(pixels1, 0, expected.getWidth(), 0, 0, expected.getWidth(), expected.getHeight())
-        actual.getPixels(pixels2, 0, actual.getWidth(), 0, 0, actual.getWidth(), actual.getHeight())
+        Assert.assertEquals(message, expected.width.toLong(), actual.width.toLong())
+        Assert.assertEquals(message, expected.height.toLong(), actual.height.toLong())
+        val pixels1 = IntArray(expected.width * expected.height)
+        val pixels2 = IntArray(actual.width * actual.height)
+        expected.getPixels(pixels1, 0, expected.width, 0, 0, expected.width, expected.height)
+        actual.getPixels(pixels2, 0, actual.width, 0, 0, actual.width, actual.height)
         for (i in pixels1.indices) {
             if (pixels1[i] != pixels2[i]) {
                 val distance = calculateDeltaE(pixels1[i], pixels2[i])
                 if (distance < toleranceThreshold) {
-                    println("Color distance within tolerance of $toleranceThreshold")
-                    return
+                    Log.d("Utils", "Color distance within tolerance of $toleranceThreshold --> $distance")
+                    continue
                 }
                 fail(
-                    message?.let { "$it; " } +
-                        String.format(
-                            "pixel $i different - expected %08X, got %08X",
-                            pixels1[i],
-                            pixels2[i],
-                        ),
+                    "${message?.let { "$it; " }}pixel $i different - " +
+                        "expected: ${pixels1[i].toColorHex()} " +
+                        "| actual: ${pixels2[i].toColorHex()} " +
+                        "| distance: $distance",
                 )
             }
         }
@@ -102,20 +101,15 @@ class Util(
         actual: IntArray,
     ) {
         Assert.assertEquals(
-            (if (message != null) message + "; " else "") + "different number of pixels",
+            "${message.let { "$it; "}}different number of pixels",
             expected.size.toLong(),
             actual.size.toLong(),
         )
         for (i in expected.indices) {
             if (expected[i] != actual[i]) {
                 fail(
-                    (if (message != null) message + "; " else "") +
-                        String.format(
-                            "pixel %d different - expected %08X, got %08X",
-                            i,
-                            expected[i],
-                            actual[i],
-                        ),
+                    "${message?.let { "$it; " }}pixel $i different - " +
+                        "expected: ${expected[i].toColorHex()} | actual: ${actual[i].toColorHex()}",
                 )
             }
         }
@@ -224,4 +218,6 @@ class Util(
         out.close()
         return outFile
     }
+
+    private fun Int.toColorHex() = toString().format("%08x")
 }
