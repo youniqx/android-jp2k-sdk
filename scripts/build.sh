@@ -41,7 +41,7 @@ runAction() {
     mkdir -p "${CURRENT_WORK_DIR}/tmp"
     ./gradlew assembleDebugAndroidTest
     cp "${CURRENT_WORK_DIR}/library/build/outputs/apk/androidTest/debug/library-debug-androidTest.apk" "${CURRENT_WORK_DIR}/tmp/test.apk"
-    ./gradlew assembleDebugAndroidTest -DtestApplicationId="com.youniqx.test.app"
+    ./gradlew assembleDebugAndroidTest -DtestApplicationId="com.youniqx.jp2k.test.app"
     cp "${CURRENT_WORK_DIR}/library/build/outputs/apk/androidTest/debug/library-debug-androidTest.apk" "${CURRENT_WORK_DIR}/tmp/app.apk"
   fi
   if [ $publish = true ]; then
