@@ -28,7 +28,7 @@ Build library:
     - make build
   artifacts:
     paths:
-      - sdk/build
+      - library/build
       - tmp
     expire_in: 1 day
 
