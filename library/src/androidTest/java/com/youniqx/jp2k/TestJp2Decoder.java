@@ -176,6 +176,10 @@ public class TestJp2Decoder {
 
             Bitmap jp2Bitmap = dec.decode();
             Bitmap pngBitmap = util.loadAssetBitmap(expected.file.replace(".jp2", ".png"));
+            // Color distance (Delta E) between golden image and testdevice:
+            // - OnePlus 12 Pro, Android 16 -> 1.7320…
+            // - Google Pixel 6a, Android 16 -> 1.7320…
+            // - Huawei P30lite, Android 10 -> 1.732…
             util.assertBitmapsEqualWithTolerance(expected.file, pngBitmap, jp2Bitmap, 1.733);
         }
     }
