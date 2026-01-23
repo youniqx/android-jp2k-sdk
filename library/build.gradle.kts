@@ -71,40 +71,43 @@ dependencies {
     testImplementation(libs.kotlin.test)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("default") {
-            groupId = "com.youniqx"
-            artifactId = "jp2k-sdk"
-            version = System.getenv("LIB_VERSION") ?: "local"
-            afterEvaluate {
-                from(components["all"])
-            }
-        }
-    }
-    // Running in CI
-    if (System.getenv("CI") == "true") {
-        // Release to Public AWS Artifacts Bucket if variable is set
-        if (!System.getenv("PUBLIC_ARTIFACTS_URL").isNullOrEmpty()) {
-            repositories {
-                maven {
-                    url = uri(System.getenv("PUBLIC_ARTIFACTS_URL"))
-                    credentials(AwsCredentials::class) {
-                        accessKey = requireNotNull(System.getenv("PUBLIC_ARTIFACTS_USER"))
-                        secretKey = requireNotNull(System.getenv("PUBLIC_ARTIFACTS_PASSWORD"))
-                    }
+val runningInSbomJob = System.getenv("SBOM_JOB") ?: "false"
+if (runningInSbomJob == "false") {
+    publishing {
+        publications {
+            create<MavenPublication>("default") {
+                groupId = "com.youniqx"
+                artifactId = "jp2k-sdk"
+                version = System.getenv("LIB_VERSION") ?: "local"
+                afterEvaluate {
+                    from(components["all"])
                 }
             }
-        } else {
-            repositories {
-                // Release to Gitlab Package Registry
-                maven {
-                    url = uri(System.getenv("GITLAB_PKG_REGISTRY"))
-                    credentials(PasswordCredentials::class) {
-                        username = "gitlab-ci-token"
-                        password = System.getenv("CI_JOB_TOKEN")
-                        authentication {
-                            create<BasicAuthentication>("basic")
+        }
+        // Running in CI
+        if (System.getenv("CI") == "true") {
+            // Release to Public AWS Artifacts Bucket if variable is set
+            if (!System.getenv("PUBLIC_ARTIFACTS_URL").isNullOrEmpty()) {
+                repositories {
+                    maven {
+                        url = uri(System.getenv("PUBLIC_ARTIFACTS_URL"))
+                        credentials(AwsCredentials::class) {
+                            accessKey = requireNotNull(System.getenv("PUBLIC_ARTIFACTS_USER"))
+                            secretKey = requireNotNull(System.getenv("PUBLIC_ARTIFACTS_PASSWORD"))
+                        }
+                    }
+                }
+            } else {
+                repositories {
+                    // Release to Gitlab Package Registry
+                    maven {
+                        url = uri(System.getenv("GITLAB_PKG_REGISTRY"))
+                        credentials(PasswordCredentials::class) {
+                            username = "gitlab-ci-token"
+                            password = System.getenv("CI_JOB_TOKEN")
+                            authentication {
+                                create<BasicAuthentication>("basic")
+                            }
                         }
                     }
                 }

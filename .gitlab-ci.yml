@@ -10,6 +10,7 @@ include:
     ref: v1.88.146
     file: 'release.yaml'
   - component: $CI_SERVER_FQDN/youniqx/mia/ci-templates/disable-ltex@main
+  - local: 'gitlab/sbom.yml'
 
 default:
   retry: 2
