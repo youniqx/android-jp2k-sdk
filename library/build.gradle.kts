@@ -17,6 +17,8 @@ tasks.register("detektDebugAll") {
     dependsOn("detektDebug", "detektDebugUnitTest", "detektDebugAndroidTest")
 }
 
+val runningInSbomJob = System.getenv("SBOM_JOB") ?: "false"
+
 android {
     compileSdk = 36
     namespace = "com.youniqx.jp2k"
@@ -38,9 +40,12 @@ android {
         }
     }
 
-    externalNativeBuild {
-        cmake {
-            path = File("CMakeLists.txt")
+
+    if(runningInSbomJob == "false") {
+        externalNativeBuild {
+            cmake {
+                path = File("CMakeLists.txt")
+            }
         }
     }
 
@@ -71,7 +76,6 @@ dependencies {
     testImplementation(libs.kotlin.test)
 }
 
-val runningInSbomJob = System.getenv("SBOM_JOB") ?: "false"
 if (runningInSbomJob == "false") {
     publishing {
         publications {
