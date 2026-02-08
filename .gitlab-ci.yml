@@ -1,13 +1,13 @@
 ---
 include:
   - project: 'youniqx/infrastructure/ci-commons'
-    ref: v1.89.27
+    ref: v1.89.28
     file: 'global.yaml'
   - project: 'youniqx/infrastructure/ci-commons'
-    ref: v1.89.27
+    ref: v1.89.28
     file: 'docker.yaml'
   - project: 'youniqx/infrastructure/ci-commons'
-    ref: v1.89.27
+    ref: v1.89.28
     file: 'release.yaml'
   - component: $CI_SERVER_FQDN/youniqx/mia/ci-templates/disable-ltex@main
   - local: 'gitlab/sbom.yml'
