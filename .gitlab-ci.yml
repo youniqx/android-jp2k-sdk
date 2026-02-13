@@ -40,7 +40,7 @@ UI Tests:
     - .small
   tags: [linux-unprivileged]
   stage: test
-  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/mia_gcloud_tools:1.3.78
+  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/mia_gcloud_tools:1.3.79
   needs:
     - job: "Build library"
       artifacts: true
