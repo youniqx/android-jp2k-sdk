@@ -4,7 +4,7 @@
 # https://gitlab.ci.youniqx.com/youniqx/mia/issues/-/issues/3394
 Generate SBOM:
   stage: build
-  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/mobile-sbom-generator:1.1.0
+  image: harbor.youniqx.com/youniqx-cloud-infrastructure/youniqx/mia/mobile-sbom-generator:1.1.5
   variables:
     GRADLE_MODULE_PATH: library
     PLATFORM: android
