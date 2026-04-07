@@ -1,5 +1,5 @@
 export GITLAB_PKG_REGISTRY = https://gitlab.ci.youniqx.com/api/v4/projects/${CI_PROJECT_ID}/packages/maven
-export OPEN_JPEG_VERSION=2.4.0
+export OPEN_JPEG_VERSION=2.5.4
 
 default: build
 

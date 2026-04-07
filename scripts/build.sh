@@ -79,6 +79,7 @@ cleanupProject() {
   echo "--------- CLEANUP PROJECT ---------"
   ./gradlew clean
    rm -rf "${CURRENT_WORK_DIR}/library/src/main/cpp/openjpeg"
+   rm -rf "${CURRENT_WORK_DIR}/library/.cxx"
    rm -rf "${CURRENT_WORK_DIR}/tmp"
   echo "--------- CLEANUP DONE ---------"
 }

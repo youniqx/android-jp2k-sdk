@@ -25,6 +25,7 @@ add_library( # Sets the name of the library.
              src/main/cpp/openjpeg/src/lib/openjp2/dwt.c
              src/main/cpp/openjpeg/src/lib/openjp2/event.c
              src/main/cpp/openjpeg/src/lib/openjp2/function_list.c
+             src/main/cpp/openjpeg/src/lib/openjp2/ht_dec.c
              src/main/cpp/openjpeg/src/lib/openjp2/image.c
              src/main/cpp/openjpeg/src/lib/openjp2/invert.c
              src/main/cpp/openjpeg/src/lib/openjp2/j2k.c

@@ -170,7 +170,7 @@ static int imagetoargb(opj_image_t *image, image_data_t *outImage) {
         outImage->width = w;
         
         if (!outImage->pixels) {
-            LOGE("Could not allocate %d bytes of memory.\n", w * h * sizeof(int));
+            LOGE("Could not allocate %zu bytes of memory.\n", w * h * sizeof(int));
             return 1;
         }
         
@@ -251,7 +251,7 @@ static int imagetoargb(opj_image_t *image, image_data_t *outImage) {
         outImage->width = w;
         
         if (!outImage->pixels) {
-            LOGE("Could not allocate %d bytes of memory.\n", w * h * sizeof(int));
+            LOGE("Could not allocate %zu bytes of memory.\n", w * h * sizeof(int));
             return 1;
         }
 
@@ -551,7 +551,7 @@ int decodeJP2Stream(opj_stream_t *l_stream, opj_dparameters_t *parameters, image
 
     if (image->color_space == OPJ_CLRSPC_SYCC) {
         color_sycc_to_rgb(image);
-    } else if ((image->color_space == OPJ_CLRSPC_CMYK)/* &&
+    } else if (image->color_space == OPJ_CLRSPC_CMYK/* &&
                (parameters.cod_format != TIF_DFMT)*/) {
         color_cmyk_to_rgb(image);
     } else if (image->color_space == OPJ_CLRSPC_EYCC) {
