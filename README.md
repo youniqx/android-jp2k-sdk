@@ -6,9 +6,9 @@ which was forked and update once
 [in this Repo](https://github.com/Tgo1014/JP2ForAndroid),
 and updated to fit current play store rules in
 [this Repo](https://github.com/prefectAtEarth/JP2ForAndroid),
-for Android, based on [OpenJPEG](http://www.openjpeg.org/) v2.4.0.
+for Android, based on [OpenJPEG](http://www.openjpeg.org/) v2.5.4.
 
-## Set up
+## Set up (currently no release available, WIP)
 
 Add dependency to your `build.gradle.kts`:
 
