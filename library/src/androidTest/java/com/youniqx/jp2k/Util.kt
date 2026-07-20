@@ -28,6 +28,7 @@ class Util(
         assertBitmapsEqual(null, expected, actual)
     }
 
+    @Suppress("ImplicitDefaultLocale")
     fun assertBitmapsEqual(
         message: String?,
         expected: Bitmap,

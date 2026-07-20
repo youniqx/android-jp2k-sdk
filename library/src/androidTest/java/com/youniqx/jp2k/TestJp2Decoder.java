@@ -30,13 +30,12 @@ import java.util.List;
  */
 @RunWith(AndroidJUnit4.class)
 public class TestJp2Decoder {
-    // Context of the app under test.
-    private Context ctx;
     private Util util;
 
     @Before
     public void init() {
-        ctx = ApplicationProvider.getApplicationContext();
+        // Context of the app under test.
+        Context ctx = ApplicationProvider.getApplicationContext();
         util = new Util(ctx);
     }
 
